@@ -308,6 +308,12 @@ variable "delete_automated_backups" {
  default     = true
 }
 
+variable "final_snapshot_identifier" {
+ description = "The name of your final DB snapshot when this DB instance is deleted."
+ type        = string
+ default     = null
+}
+
 
 #variable "performance_insights_kms_key_id" {
 #  description = "The ARN for the KMS key to encrypt Performance Insights data."
@@ -316,12 +322,7 @@ variable "delete_automated_backups" {
 #}
 #
 #
-#variable "final_snapshot_identifier" {
-#  description = "The name of your final DB snapshot when this DB instance is deleted."
-#  type        = string
-#  default     = null
-#}
-#
+
 #variable "final_snapshot_identifier_prefix" {
 #  description = "The name which is prefixed to the final snapshot on cluster destroy"
 #  type        = string
@@ -472,3 +473,6 @@ variable "delete_automated_backups" {
 #}
 #
 #
+#variable "db_subnet_group_id" {}
+#variable "db_option_group_id" {}
+#variable "db_parameter_group_id" {}
