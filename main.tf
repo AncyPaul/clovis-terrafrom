@@ -26,7 +26,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
 resource "aws_db_parameter_group" "db_parameter_group" {
     count = var.create_db_parameter_group ? 1 : 0
     name = var.db_parameter_group_name
-    family = var.db_parameter_group_family 
+    family = var.db_parameter_group_family
     # dynamic "parameter" {
     #     for_each = var.parameters
     #     content {
@@ -35,7 +35,7 @@ resource "aws_db_parameter_group" "db_parameter_group" {
     #         apply_method = lookup(parameter.value, "apply_method", null)
     #     }
     # }
-    # lifecycle { 
+    # lifecycle {
     #     create_before_destroy = true
     # }
     tags = merge(var.tags, {"Name" = var.db_parameter_group_name })
@@ -83,7 +83,7 @@ resource "aws_db_instance" "db_instance" {
     storage_encrypted                     = var.db_storage_encrypted
     #kms_key_id                            = var.db_kms_key_id
     #license_model                         = var.db_license_model
-    
+
     name                                  = var.db_name
     username                              = var.db_username
     password                              = var.db_password
@@ -93,10 +93,10 @@ resource "aws_db_instance" "db_instance" {
     iam_database_authentication_enabled   = var.iam_database_authentication_enabled
 
     vpc_security_group_ids                = var.db_vpc_security_group_ids
-    db_subnet_group_name                  = var.db_subnet_group_name
     parameter_group_name                  = var.db_parameter_group_name
     option_group_name                     = var.db_option_group_name
-   
+    db_subnet_group_name                  = var.db_subnet_group_name
+
     availability_zone                     = var.availability_zone
     multi_az                              = var.multi_az
     iops                                  = var.iops
@@ -111,8 +111,8 @@ resource "aws_db_instance" "db_instance" {
     snapshot_identifier                   = var.snapshot_identifier
     copy_tags_to_snapshot                 = var.copy_tags_to_snapshot
     skip_final_snapshot                   = var.skip_final_snapshot
-    #final_snapshot_identifier            = var.skip_final_snapshot ? null : coalesce(var.final_snapshot_identifier, "${var.final_snapshot_identifier_prefix}-${var.identifier}-${random_id.snapshot_identifier[0].hex}")
-    final_snapshot_identifier             = var.final_snapshot_identifier
+    #final_snapshot_identifier             = var.skip_final_snapshot ? null : coalesce(var.final_snapshot_identifier, "${var.final_snapshot_identifier_prefix}-${var.identifier}-${random_id.snapshot_identifier[0].hex}")
+    #final_snapshot_identifier             = var.final_snapshot_identifier
 
     performance_insights_enabled          = var.performance_insights_enabled
     performance_insights_retention_period = var.performance_insights_enabled ? var.performance_insights_retention_period : null
@@ -122,7 +122,7 @@ resource "aws_db_instance" "db_instance" {
     backup_retention_period               = var.backup_retention_period
     backup_window                         = var.backup_window
     max_allocated_storage                 = var.max_allocated_storage
-    monitoring_interval                   = var.monitoring_interval
+    #monitoring_interval                   = var.monitoring_interval
     #monitoring_role_arn                   = var.monitoring_interval > 0 ? local.monitoring_role_arn : null
 
     #character_set_name                    = var.character_set_name
