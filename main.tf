@@ -7,6 +7,7 @@
 #   create_db_option_group = var.create_db_option_group && var.engine != "postgres"
 #   option_group           = local.create_db_option_group ? module.db_option_group.db_option_group_id : var.option_group_name
 # }
+# test
 
 resource "random_password" "master_password" {
   count = var.create_db_instance && var.create_random_password ? 1 : 0
